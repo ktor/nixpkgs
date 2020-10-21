@@ -8,13 +8,21 @@
 }:
 
 let
+<<<<<<< HEAD
+  version = "3.6.0";
+=======
   version = "3.8.0";
+>>>>>>> e87552f853b (timeular: 3.4.1 -> 3.8.0)
   pname = "timeular";
   name = "${pname}-${version}";
 
   src = fetchurl {
     url = "https://s3.amazonaws.com/timeular-desktop-packages/linux/production/Timeular-${version}.AppImage";
+<<<<<<< HEAD
+    sha256 = "0j0qm9laqmvn48qd3cls5ad0q7cnn03dnaw3wkacvg1ybq7x2xlm";
+=======
     sha256 = "10yjjlsrv50a7ryck3gqwf8g7d96j9gbcbxafhphsr7lwx2hzybv";
+>>>>>>> e87552f853b (timeular: 3.4.1 -> 3.8.0)
   };
 
   appimageContents = appimageTools.extractType2 {
