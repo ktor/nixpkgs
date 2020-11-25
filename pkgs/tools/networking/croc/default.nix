@@ -1,22 +1,27 @@
-{ stdenv, buildGoModule, fetchFromGitHub }:
+{ stdenv, buildGoModule, fetchFromGitHub, callPackage}:
 
 buildGoModule rec {
   pname = "croc";
-  version = "8.5.1";
+  version = "8.6.6";
 
   src = fetchFromGitHub {
     owner = "schollz";
     repo = pname;
     rev = "v${version}";
-    sha256 = "1b0bcqgvlalgz82s1dnq7lkmwvznc5vnh27al9j1dqg4hx97md2j";
+    sha256 = "0bd7q3j2i0r3v4liv2xpqlvx4nrixpdhr1yy1c579bls7y4myv61";
   };
 
-  vendorSha256 = "15bis2hssk7x2r0m728l1rmbl8nl5p4kzdf5382bcs8p3hscp0gl";
+  vendorSha256 = "06hqb5r9p67zh0v5whdsb3rvax6461y2n6jkhjwmn6zzswpgkg7y";
 
   doCheck = false;
 
   subPackages = [ "." ];
 
+  passthru = {
+    tests = {
+      local-relay = callPackage ./test-local-relay.nix {};
+    };
+  };
   meta = with stdenv.lib; {
     description =
       "Easily and securely send things from one computer to another";
