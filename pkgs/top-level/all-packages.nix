@@ -8549,14 +8549,16 @@ in
   copper = callPackage ../development/compilers/copper {};
 
   inherit (callPackages ../development/compilers/crystal {
-    inherit (llvmPackages_10) stdenv clang llvm;
+    llvmPackages = llvmPackages_10;
   })
     crystal_0_31
     crystal_0_32
     crystal_0_33
     crystal_0_34
-    crystal
-    crystal2nix;
+    crystal_0_35
+    crystal;
+
+  crystal2nix = callPackage ../development/compilers/crystal2nix { };
 
   icr = callPackage ../development/tools/icr { };
 
@@ -16416,6 +16418,8 @@ in
   grafana = callPackage ../servers/monitoring/grafana {
     buildGoModule = buildGo114Module;
   };
+
+  grafana-agent = callPackage ../servers/monitoring/grafana-agent { };
 
   grafana-loki = callPackage ../servers/monitoring/loki {
     buildGoPackage = buildGo114Package;
