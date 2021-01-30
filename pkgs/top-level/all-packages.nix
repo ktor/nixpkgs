@@ -14616,7 +14616,6 @@ in
 
   openh264 = callPackage ../development/libraries/openh264 { };
 
-  openjpeg_1 = callPackage ../development/libraries/openjpeg/1.x.nix { };
   openjpeg_2 = callPackage ../development/libraries/openjpeg/2.x.nix { };
   openjpeg = openjpeg_2;
 
@@ -17661,7 +17660,6 @@ in
         # when adding a new linux version
         kernelPatches.cpu-cgroup-v2."4.11"
         kernelPatches.modinst_arg_list_too_long
-        kernelPatches.export_kernel_fpu_functions."4.14"
       ];
   };
 
@@ -17670,7 +17668,6 @@ in
       [ kernelPatches.bridge_stp_helper
         kernelPatches.request_key_helper
         kernelPatches.modinst_arg_list_too_long
-        kernelPatches.export_kernel_fpu_functions."4.14"
       ];
   };
 
@@ -17678,7 +17675,6 @@ in
     kernelPatches = [
       kernelPatches.bridge_stp_helper
       kernelPatches.request_key_helper
-      kernelPatches.export_kernel_fpu_functions."5.3"
     ];
   };
 
@@ -17686,7 +17682,6 @@ in
     kernelPatches = [
       kernelPatches.bridge_stp_helper
       kernelPatches.request_key_helper
-      kernelPatches.export_kernel_fpu_functions."5.3"
     ];
   };
 
@@ -17694,7 +17689,6 @@ in
     kernelPatches = [
       kernelPatches.bridge_stp_helper
       kernelPatches.request_key_helper
-      kernelPatches.export_kernel_fpu_functions."5.3"
     ];
   };
 
@@ -17702,7 +17696,6 @@ in
     kernelPatches = [
       kernelPatches.bridge_stp_helper
       kernelPatches.request_key_helper
-      kernelPatches.export_kernel_fpu_functions."5.3"
     ];
   };
 
@@ -17710,7 +17703,6 @@ in
     kernelPatches = [
       kernelPatches.bridge_stp_helper
       kernelPatches.request_key_helper
-      kernelPatches.export_kernel_fpu_functions."5.3"
     ];
   };
 
@@ -17740,7 +17732,6 @@ in
     kernelPatches = [
       kernelPatches.bridge_stp_helper
       kernelPatches.request_key_helper
-      kernelPatches.export_kernel_fpu_functions."5.3"
     ];
   };
 
@@ -18018,10 +18009,9 @@ in
         inherit (kernel) version;
       };
       kernelPatches = kernel.kernelPatches ++ [
-        kernelPatches.tag_hardened
         kernelPatches.hardened.${kernel.meta.branch}
       ];
-      modDirVersionArg = kernel.modDirVersion + (kernelPatches.hardened.${kernel.meta.branch}).extra + "-hardened";
+      modDirVersionArg = kernel.modDirVersion + (kernelPatches.hardened.${kernel.meta.branch}).extra;
       isHardened = true;
   });
 
@@ -19849,7 +19839,6 @@ in
   calibre = calibre-py3;
 
   calligra = libsForQt514.callPackage ../applications/office/calligra {
-    openjpeg = openjpeg_1;
     poppler = poppler_0_61.override {
       qt5Support = true;
       # Must be using the same qt version as calligra itself.
@@ -20222,7 +20211,7 @@ in
 
   electron-cash = libsForQt5.callPackage ../applications/misc/electron-cash { };
 
-  electrum = libsForQt514.callPackage ../applications/misc/electrum { };
+  electrum = libsForQt5.callPackage ../applications/misc/electrum { };
 
   electrum-dash = callPackage ../applications/misc/electrum/dash.nix { };
 
@@ -20429,7 +20418,6 @@ in
   fldigi = callPackage ../applications/radio/fldigi { };
 
   flink = callPackage ../applications/networking/cluster/flink { };
-  flink_1_5 = flink.override { version = "1.5"; };
 
   fllog = callPackage ../applications/radio/fllog { };
 
@@ -21502,9 +21490,7 @@ in
 
   kpt = callPackage ../applications/networking/cluster/kpt { };
 
-  krita = libsForQt5.callPackage ../applications/graphics/krita {
-    openjpeg = openjpeg_1;
-  };
+  krita = libsForQt5.callPackage ../applications/graphics/krita { };
 
   krusader = libsForQt514.callPackage ../applications/misc/krusader { };
 
